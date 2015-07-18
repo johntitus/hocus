@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+var program = require('commander');
+var actions = require('./lib/actions');
+
+program
+	.command('model [name] [attributes...]')
+	.usage('NAME [field:type]')
+	.action(actions.generateModel);
+
+program
+	.command('controller [name] [attributes...]')
+	.usage('blah')
+	.action(function(){
+		console.log('gen contoller')
+	});
+
+program.parse(process.argv);
