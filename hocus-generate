@@ -10,8 +10,6 @@ program
 program
 	.command('controller [name] [attributes...]')
 	.usage('blah')
-	.action(function(){
-		console.log('gen contoller')
-	});
+	.action(actions.generateController);
 
 program.parse(process.argv);

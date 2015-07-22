@@ -63,4 +63,8 @@ program.command('delete model', 'delete a model');
 
 program.command('generate controller', 'generate a controller');
 
+program
+    .command('test')
+    .action( actions.test );
+
 program.parse(process.argv);
