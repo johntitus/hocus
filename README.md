@@ -1,7 +1,11 @@
 # Hocus
 The magical NoOps development framework.
 
-Hocus is a development framework that takes away the pain of managing servers, and databases, and everything else for that matter.
+Hocus is a development framework that takes away the pain of managing servers, and databases, and everything else for that matter. Your environment gets hosted in Amazon Web Services. Your controllers go into Lambda, your models become tables in Dynamo, and your Routes are hosted by the API Gateway.
+
+Your controllers, the only code you have to write, can be written in any language as long as it can read from stdin and write to stdout.
+
+
 ## Status
 Very much in active/breaking development.
 
