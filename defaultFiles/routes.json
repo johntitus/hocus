@@ -1,5 +1,32 @@
 {
-	"routes" : [
-
-	]
+    "basePath": "/api",
+    "paths": {
+    	"/pets/{petId}" : {
+    		"get" : {
+    			"summary" : "get a pet"
+    		}
+    	},
+        "/pets": {
+            "get": {
+                "summary": "gets a list of pets",
+                "parameters" : {
+    				"queryString" : {
+    					"type" : "string",
+    					"minCost" : "integer",
+    					"maxCost" : "integer"
+    				}
+    			}
+            }
+        },
+        "/pets/{petId}/owners/{ownerId}": {
+            "get": {
+                "summary": "get an owner of a pet"
+            }
+        },
+        "/owners": {
+        	"get": {
+                "summary": "gets a list of owners"
+            }
+        }        
+    }
 }

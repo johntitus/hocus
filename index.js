@@ -2,8 +2,16 @@
 
 var program = require('commander');
 var prompt = require('prompt');
+var path = require('path');
+var gitConfig = require('git-config');
+var osenv = require('osenv');
+var fs = require('fs');
 
-var actions = require('./lib/actions');
+var actions = require(__dirname + '/lib/actions');
+
+var userHome = osenv.home();
+var credentialsFile = userHome + '/.hocus/credentials.json';
+
 
 program
     .version('0.0.1')
@@ -15,12 +23,13 @@ program
     .command('configure')
     .description('configure your AWS access and settings')
     .action( function(){
+        var credentials = {};
         var schema = {
             properties : {
                 'profile' : {
                     require : true,
-                    default : 'default',
-                    description : 'Profile Name:'.cyan
+                    default : 'dev',
+                    description : 'Credential Profile Name:'.cyan
                 },
                 'awsAccessKey' : {
                     required : true,
@@ -49,6 +58,20 @@ program
                 }
             }
         }
+        if (fs.existsSync(credentialsFile)){
+            credentials = JSON.parse(fs.readFileSync(credentialsFile));
+        } else {
+            var gitconfig = gitConfig.sync();
+            var userNameDefault = '';
+            if ( typeof gitconfig.user !== 'undefined' ){
+                userNameDefault = gitconfig.user.name;
+            }
+            schema.properties[ 'userName' ] = {
+                default : userNameDefault,
+                description : 'Your Name:'.cyan,
+                required : true
+            }
+        }        
 
         prompt.message = '';
         prompt.delimiter = '';
@@ -66,5 +89,9 @@ program.command('generate controller', 'generate a controller');
 program
     .command('test')
     .action( actions.test );
+
+program
+    .command('deploy [environment]')
+    .action( actions.deploy );
 
 program.parse(process.argv);

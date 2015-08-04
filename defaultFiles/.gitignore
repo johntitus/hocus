@@ -1,0 +1,2 @@
+# Don't let dev team members ovewrite each other's environment
+.hocus/environments/dev
