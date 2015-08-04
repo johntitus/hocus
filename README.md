@@ -2,6 +2,8 @@
 The magical NoOps development framework.
 
 Hocus is a development framework that takes away the pain of managing servers, and databases, and everything else for that matter.
+## Status
+Very much in active/breaking development.
 
 ## Installation
 Hocus is still in active/breaking development mode, so installation isn't pretty at the moment.
@@ -17,6 +19,10 @@ Hocus is still in active/breaking development mode, so installation isn't pretty
     `npm link`
 
 ## Commands
+`hocus configure`
+
+Set up your AWS credentials & region. Stores in `~/home/.hocus/credentials.json`
+
 `hocus new [application name]`
 
 Creates a new hocus app. Working, but directory structure may change.
